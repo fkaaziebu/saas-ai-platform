@@ -16,8 +16,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
+import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const MusicPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
 
@@ -39,7 +42,11 @@ const MusicPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
 
       console.log(error);
     } finally {
@@ -97,10 +104,9 @@ const MusicPage = () => {
             </div>
           )}
           {music && (
-
-          <audio controls className="w-full mt-8">
-            <source src={music} />
-          </audio>
+            <audio controls className="w-full mt-8">
+              <source src={music} />
+            </audio>
           )}
         </div>
       </div>

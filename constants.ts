@@ -91,3 +91,30 @@ export const tools = [
 ];
 
 export const MAX_FREE_COUNTS = 5;
+
+export const testimonials = [
+  {
+    name: "Antonio",
+    avatar: "A",
+    title: "Software Engineer",
+    description: "This is the best application I've used",
+  },
+  {
+    name: "Antonio",
+    avatar: "B",
+    title: "Software Developer",
+    description: "This application is awesome",
+  },
+  {
+    name: "Antonio",
+    avatar: "C",
+    title: "Software Architect",
+    description: "Great work guys, keep it up",
+  },
+  {
+    name: "Antonio",
+    avatar: "D",
+    title: "Backend Engineer",
+    description: "I haven't seen awesome apps like this for a while now",
+  },
+];

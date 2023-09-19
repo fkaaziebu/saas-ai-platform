@@ -7,13 +7,19 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
+import FreeCounter from "./free-counter";
 
 const montserrat = Montserrat({
   weight: "600",
   subsets: ["latin"],
 });
 
-const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+  isPro: boolean
+}
+
+const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -46,6 +52,9 @@ const Sidebar = () => {
             </Link>
           ))}
         </div>
+      </div>
+      <div>
+        <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
       </div>
     </div>
   );
