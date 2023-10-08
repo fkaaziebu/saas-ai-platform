@@ -22,6 +22,7 @@ export async function GET() {
       },
     });
 
+    // Already subscribed
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
@@ -31,6 +32,7 @@ export async function GET() {
       return new NextResponse(JSON.stringify({ url: stripeSession.url }));
     }
 
+    // Not subscribed
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: settingsUrl,
       cancel_url: settingsUrl,
